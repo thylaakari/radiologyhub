@@ -7,9 +7,10 @@ export default {
     './plugins/**/*.{js,ts}',
     './app.vue',
     './error.vue',
+    'node_modules/preline/dist/*.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('preline/plugin')],
 }

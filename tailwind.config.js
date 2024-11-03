@@ -10,7 +10,9 @@ export default {
     'node_modules/preline/dist/*.js',
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['Geologica', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
   },
   plugins: [require('@tailwindcss/forms'), require('preline/plugin')],
 }

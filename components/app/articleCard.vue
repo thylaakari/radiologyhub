@@ -1,0 +1,42 @@
+<template>
+  <article
+    class="rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 shadow-md"
+  >
+    <div class="rounded-[10px] bg-white p-4 sm:p-6">
+      <div class="flex items-center">
+        <span class="text-xs text-gray-500">28 окт 2024</span>
+      </div>
+      <nuxt-link to=""
+        ><h3 class="mt-0.5 text-lg font-medium text-gray-900">
+          Отличия бронхопневмонии от плевропневмонии на рентгеноскопии легких
+          &rarr;
+        </h3></nuxt-link
+      >
+      <div class="my-4 flex flex-wrap gap-1">
+        <span
+          class="whitespace-nowrap rounded-full bg-sky-500 px-2.5 py-0.5 text-xs text-white"
+          >Рентген</span
+        >
+        <span
+          class="whitespace-nowrap rounded-full bg-sky-500 px-2.5 py-0.5 text-xs text-white"
+          >Скопия</span
+        >
+      </div>
+      <div class="shrink-0 group block">
+        <div class="flex items-center">
+          <img
+            class="inline-block shrink-0 size-8 rounded-full"
+            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+            alt="Avatar"
+          />
+          <div class="ms-3">
+            <h3 class="font-medium text-md text-gray-800">Евджений Федорыч</h3>
+            <p class="text-sm font-light text-gray-400 dark:text-neutral-500">
+              jeka228@internet.com
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</template>

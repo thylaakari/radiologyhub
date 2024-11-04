@@ -1,4 +1,5 @@
 <template>
+  <!-- First screen -->
   <header
     class="bg-gradient-to-br from-stone-700 to-black text-white lg:h-screen w-full flex flex-col"
   >
@@ -28,15 +29,15 @@
 
       <!-- Форма на главной -->
       <div
-        class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500"
+        class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5"
       >
-        <div class="bg-white rounded-t-xl p-3 m-1 mb-0">
+        <div class="bg-white rounded-t-[10px] p-3 mb-0">
           <h2 class="mt-1 md:text-xl lg:text-2xl text-center text-gray-500">
             Зарегистрируйтесь, чтобы комментировать статьи, участвовать в
             разборе кейсов, просматривать видеокурсы
           </h2>
         </div>
-        <div class="p-3 pt-0 md:pt-4 m-1 mt-0 bg-white h-full rounded-b-xl">
+        <div class="p-3 pt-0 md:pt-4 mt-0 bg-white h-full rounded-b-[10px]">
           <div class="relative">
             <input
               type="text"
@@ -76,4 +77,18 @@
       </div>
     </main>
   </header>
+
+  <!-- Last articles -->
+  <section class="container mx-auto grid grid-col md:grid-cols-2 p-4 gap-4">
+    <h2 class="text-center text-xl">Последние статьи</h2>
+    <nuxt-link to="" class="cursor-pointer">
+      <app-article-card></app-article-card>
+    </nuxt-link>
+    <nuxt-link to="" class="cursor-pointer">
+      <app-article-card></app-article-card>
+    </nuxt-link>
+    <nuxt-link to="" class="cursor-pointer">
+      <app-article-card></app-article-card>
+    </nuxt-link>
+  </section>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="w-full mx-auto py-6 px-4 flex flex-wrap items-center justify-between"
+    class="w-full mx-auto py-6 px-4 flex flex-wrap items-center justify-between container"
   >
     <nuxt-link to="/">
       <app-logo
@@ -50,7 +50,7 @@
       :class="{ hidden: !isOpen }"
     >
       <div
-        class="flex flex-col gap-16 mt-5 md:flex-row md:items-center md:mt-0 md:ps-5"
+        class="flex flex-col gap-x-16 gap-y-6 mt-5 md:flex-row md:items-center md:mt-0 md:ps-5"
       >
         <nuxt-link
           to="/"

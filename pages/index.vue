@@ -1,14 +1,16 @@
 <template>
   <header
-    class="bg-gradient-to-br from-stone-700 to-black text-white h-screen flex flex-col"
+    class="bg-gradient-to-br from-stone-700 to-black text-white lg:h-screen w-full flex flex-col"
   >
     <index-navbar></index-navbar>
     <main
-      class="h-full container mx-auto grid grid-cols-3 content-center gap-10"
+      class="h-full container p-4 my-10 mx-auto lg:grid lg:grid-cols-3 content-center gap-10"
     >
       <!-- Интро -->
-      <div class="grid grid-col gap-6 col-span-2">
-        <h1 class="text-7xl font-black drop-shadow-lg">
+      <div class="lg:grid lg:grid-col lg:gap-6 lg:col-span-2">
+        <h1
+          class="text-3xl text-center lg:text-left md:text-6xl lg:text-7xl font-black drop-shadow-lg mb-10"
+        >
           Интерактивный портал по
           <span
             class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 underline decoration-solid decoration-sky-500"
@@ -16,7 +18,9 @@
           >
           рентгенологии
         </h1>
-        <h2 class="text-2xl font-light text-slate-200">
+        <h2
+          class="md:text-xl lg:text-2xl text-center lg:text-left mb-10 font-light text-slate-200"
+        >
           Курсы, статьи, разборы случаев, понятные видеуроки для начинающих
           рентгенологов
         </h2>
@@ -27,17 +31,17 @@
         class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500"
       >
         <div class="bg-white rounded-t-xl p-3 m-1 mb-0">
-          <h2 class="mt-1 text-2xl text-center text-gray-500">
+          <h2 class="mt-1 md:text-xl lg:text-2xl text-center text-gray-500">
             Зарегистрируйтесь, чтобы комментировать статьи, участвовать в
             разборе кейсов, просматривать видеокурсы
           </h2>
         </div>
-        <div class="p-4 m-1 mt-0 bg-white h-full rounded-b-xl">
+        <div class="p-3 pt-0 md:pt-4 m-1 mt-0 bg-white h-full rounded-b-xl">
           <div class="relative">
             <input
               type="text"
               placeholder="email@yandex.ru"
-              class="py-3 px-4 ps-14 block w-full border-gray-200 shadow-sm rounded-lg text-lg focus:z-10 focus:border-sky-500 focus:ring-sky-500 disabled:opacity-50 disabled:pointer-events-none placeholder:text-gray-400 font-extralight text-gray-900"
+              class="py-3 px-4 ps-14 block w-full border-gray-200 shadow-sm rounded-lg text-md md:text-lg focus:z-10 focus:border-sky-500 focus:ring-sky-500 disabled:opacity-50 disabled:pointer-events-none placeholder:text-gray-400 font-extralight text-gray-900"
             />
             <div
               class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4"
@@ -58,7 +62,7 @@
             </div>
           </div>
           <button
-            class="py-3 px-4 my-4 w-full text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white"
+            class="p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white"
           >
             Зарегистрироваться
           </button>

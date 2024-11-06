@@ -1,6 +1,6 @@
 <template>
   <article
-    class="rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 shadow-md"
+    class="rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 shadow-md hover:shadow-lg transition"
   >
     <div class="rounded-[10px] bg-white p-4 sm:p-6">
       <div class="flex items-center">

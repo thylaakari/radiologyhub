@@ -5,7 +5,7 @@
   >
     <index-navbar></index-navbar>
     <main
-      class="h-full container p-4 my-10 mx-auto lg:grid lg:grid-cols-3 content-center gap-10"
+      class="h-full container my-10 mx-auto lg:grid lg:grid-cols-3 content-center gap-10"
     >
       <!-- Интро -->
       <div class="lg:grid lg:grid-col lg:gap-6 lg:col-span-2">
@@ -29,7 +29,7 @@
 
       <!-- Форма на главной -->
       <div
-        class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5"
+        class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
       >
         <div class="bg-white rounded-t-[10px] p-3 mb-0">
           <h2 class="mt-1 md:text-xl lg:text-2xl text-center text-gray-500">
@@ -79,16 +79,122 @@
   </header>
 
   <!-- Last articles -->
-  <section class="container mx-auto grid grid-col md:grid-cols-2 p-4 gap-4">
-    <h2 class="text-center text-xl">Последние статьи</h2>
-    <nuxt-link to="" class="cursor-pointer">
-      <app-article-card></app-article-card>
-    </nuxt-link>
-    <nuxt-link to="" class="cursor-pointer">
-      <app-article-card></app-article-card>
-    </nuxt-link>
-    <nuxt-link to="" class="cursor-pointer">
-      <app-article-card></app-article-card>
-    </nuxt-link>
+  <section class="container mx-auto pt-10 pb-20">
+    <h2 class="text-center text-3xl font-bold pb-10">
+      Последние статьи &mdash;
+      <nuxt-link
+        to=""
+        class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 hover:underline cursor-pointer decoration-solid decoration-sky-500"
+        >Все статьи &rarr;</nuxt-link
+      >
+    </h2>
+    <section
+      class="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-4 mx-2 sm:mx-0"
+    >
+      <nuxt-link to="" class="cursor-pointer">
+        <app-article-card></app-article-card>
+      </nuxt-link>
+      <nuxt-link to="" class="cursor-pointer">
+        <app-article-card></app-article-card>
+      </nuxt-link>
+      <nuxt-link to="" class="cursor-pointer">
+        <app-article-card></app-article-card>
+      </nuxt-link>
+    </section>
   </section>
+
+  <!-- Last courses -->
+  <section class="bg-sky-100 pt-10 pb-20">
+    <section class="container mx-auto">
+      <h2 class="text-center text-3xl font-bold pb-10">
+        Популярные курсы &mdash;
+        <nuxt-link
+          to=""
+          class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 hover:underline cursor-pointer decoration-solid decoration-sky-500"
+          >Все курсы &rarr;</nuxt-link
+        >
+      </h2>
+      <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mx-2 sm:mx-0">
+        <nuxt-link to="" class="cursor-pointer">
+          <app-course-card></app-course-card>
+        </nuxt-link>
+        <nuxt-link to="" class="cursor-pointer">
+          <app-course-card></app-course-card>
+        </nuxt-link>
+        <nuxt-link to="" class="cursor-pointer">
+          <app-course-card></app-course-card>
+        </nuxt-link>
+      </section>
+    </section>
+  </section>
+
+  <hr class="border-blue-500 border-2 shadow-sm" />
+
+  <!-- Features -->
+  <section class="px-4 py-10">
+    <div
+      class="container mx-auto grid gap-4 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8"
+    >
+      <!-- Stats -->
+      <div class="text-center">
+        <h4 class="text-lg font-semibold text-gray-800">Статей</h4>
+        <p class="mt-2 sm:mt-3 text-6xl font-bold text-blue-500">1488</p>
+        <p class="mt-1 text-gray-500 hidden sm:block">в бесплатном доступе</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="text-center">
+        <h4 class="text-lg font-semibold text-gray-800">Пользователей</h4>
+        <p class="mt-2 sm:mt-3 text-6xl font-bold text-pink-500">322</p>
+        <p class="mt-1 text-gray-500 hidden sm:block">прошли наши курсы</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="text-center">
+        <h4 class="text-lg font-semibold text-gray-800">
+          Средняя оценка курсов
+        </h4>
+        <p class="mt-2 sm:mt-3 text-6xl font-bold text-red-500">9,7</p>
+        <p class="mt-1 text-gray-500 hidden sm:block">из 10</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-blue-500 border-2 shadow-sm" />
+
+  <!-- Blog -->
+  <section class="container mx-auto px-4 py-10">
+    <h2 class="text-center text-3xl font-bold pb-10">
+      Новости &mdash;
+      <nuxt-link
+        to=""
+        class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 hover:underline cursor-pointer decoration-solid decoration-sky-500"
+        >Все новости &rarr;</nuxt-link
+      >
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-neutral-900">
+    <div class="container mx-auto px-4 xl:px-0 py-10 lg:pt-16">
+      <nuxt-link to="/">
+        <app-logo
+          class="h-10 mx-auto fill-white hover:fill-blue-400 transition-colors duration-900"
+        ></app-logo>
+      </nuxt-link>
+
+      <p class="text-center text-sm text-neutral-400 mt-4">
+        &copy; 2024 Все права защищены. Копирование материалов без указания
+        автора запрещено.
+      </p>
+    </div>
+  </footer>
 </template>

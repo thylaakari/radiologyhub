@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  plugins: ['~/plugins/preline.client.ts'],
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {

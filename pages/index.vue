@@ -3,7 +3,7 @@
   <header
     class="bg-gradient-to-br from-stone-700 to-black text-white lg:h-screen w-full flex flex-col"
   >
-    <index-navbar></index-navbar>
+    <app-navbar></app-navbar>
     <main
       class="h-full container my-10 mx-auto lg:grid lg:grid-cols-3 content-center gap-10"
     >
@@ -83,7 +83,7 @@
     <h2 class="text-center text-3xl font-bold pb-10">
       Последние статьи &mdash;
       <nuxt-link
-        to=""
+        to="/articles"
         class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 hover:underline cursor-pointer decoration-solid decoration-sky-500"
         >Все статьи &rarr;</nuxt-link
       >
@@ -91,15 +91,9 @@
     <section
       class="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-4 mx-2 sm:mx-0"
     >
-      <nuxt-link to="" class="cursor-pointer">
-        <app-article-card></app-article-card>
-      </nuxt-link>
-      <nuxt-link to="" class="cursor-pointer">
-        <app-article-card></app-article-card>
-      </nuxt-link>
-      <nuxt-link to="" class="cursor-pointer">
-        <app-article-card></app-article-card>
-      </nuxt-link>
+      <app-article-card></app-article-card>
+      <app-article-card></app-article-card>
+      <app-article-card></app-article-card>
     </section>
   </section>
 
@@ -182,19 +176,5 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-neutral-900">
-    <div class="container mx-auto px-4 xl:px-0 py-10 lg:pt-16">
-      <nuxt-link to="/">
-        <app-logo
-          class="h-10 mx-auto fill-white hover:fill-blue-400 transition-colors duration-900"
-        ></app-logo>
-      </nuxt-link>
-
-      <p class="text-center text-sm text-neutral-400 mt-4">
-        &copy; 2024 Все права защищены. Копирование материалов без указания
-        автора запрещено.
-      </p>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </template>

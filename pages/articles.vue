@@ -1,42 +1,38 @@
 <template>
-  <section class="container mx-auto py-10 flex justify-between gap-4">
+  <section
+    class="container mx-auto py-10 flex justify-between flex-wrap gap-4 px-4"
+  >
     <!-- Name -->
-    <div class="w-full">
-      <input
-        type="text"
-        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-        placeholder="Название"
-      />
-    </div>
+    <input
+      type="text"
+      class="py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+      placeholder="Название"
+    />
 
     <!-- Select tags -->
-    <div class="w-full">
-      <select
-        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-      >
-        <option selected="">Тэги</option>
-        <option>Рентген</option>
-        <option>Искусственный интеллект</option>
-        <option>Скопия</option>
-      </select>
-    </div>
+    <select
+      class="py-3 px-4 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+    >
+      <option selected="">Тэги</option>
+      <option>Рентген</option>
+      <option>Искусственный интеллект</option>
+      <option>Скопия</option>
+    </select>
 
     <!-- Select author -->
-    <div class="w-full">
-      <select
-        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-      >
-        <option selected="">Аффтор</option>
-        <option>Нахой Ненуджон</option>
-        <option>Перевод</option>
-        <option>Жэкич Федорыч</option>
-      </select>
-    </div>
+    <select
+      class="py-3 px-4 pe-9 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+    >
+      <option selected="">Аффтор</option>
+      <option>Нахой Ненуджон</option>
+      <option>Перевод</option>
+      <option>Жэкич Федорыч</option>
+    </select>
 
     <!-- Filter btn -->
     <button
       type="button"
-      class="w-full py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-blue-500 text-white shadow-sm hover:bg-blue-600"
+      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-blue-500 text-white shadow-sm hover:bg-blue-600"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +52,7 @@
       Найти
     </button>
   </section>
-  <section class="container mx-auto grid gap-8 pb-10">
+  <section class="container lg:w-2/3 mx-auto grid gap-8 pb-10 px-4">
     <app-article-card></app-article-card>
     <app-article-card></app-article-card>
     <app-article-card></app-article-card>

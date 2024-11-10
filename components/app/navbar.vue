@@ -57,11 +57,11 @@
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Статьи</nuxt-link
         >
-        <nuxt-link
+        <!-- <nuxt-link
           to="/"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Курсы</nuxt-link
-        >
+        > -->
         <nuxt-link
           to="/"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"

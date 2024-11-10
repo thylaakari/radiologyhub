@@ -98,7 +98,7 @@
   </section>
 
   <!-- Last courses -->
-  <section class="bg-sky-100 pt-10 pb-20">
+  <!-- <section class="bg-sky-100 pt-10 pb-20">
     <section class="container mx-auto">
       <h2 class="text-center text-3xl font-bold pb-10">
         Популярные курсы &mdash;
@@ -120,7 +120,7 @@
         </nuxt-link>
       </section>
     </section>
-  </section>
+  </section> -->
 
   <hr class="border-blue-500 border-2 shadow-sm" />
 

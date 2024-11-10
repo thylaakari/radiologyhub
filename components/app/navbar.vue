@@ -48,6 +48,7 @@
     <div
       class="basis-full grow md:grow-0 md:basis-auto md:block md:order-2"
       :class="{ hidden: !isOpen }"
+      @click="isOpen = !isOpen"
     >
       <div
         class="flex flex-col gap-x-16 gap-y-6 mt-5 md:flex-row md:items-center md:mt-0 md:ps-5"
@@ -57,13 +58,13 @@
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Статьи</nuxt-link
         >
-        <nuxt-link
+        <!-- <nuxt-link
           to="/"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Курсы</nuxt-link
-        >
+        > -->
         <nuxt-link
-          to="/"
+          to="/about"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >О нас</nuxt-link
         >

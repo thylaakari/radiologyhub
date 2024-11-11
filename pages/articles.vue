@@ -52,7 +52,7 @@
       Найти
     </button>
   </section>
-  <section class="container lg:w-2/3 mx-auto grid gap-8 pb-10 px-4">
+  <section class="container lg:w-2/3 xl:w-1/2 mx-auto grid gap-8 pb-10 px-4">
     <app-article-card></app-article-card>
     <app-article-card></app-article-card>
     <app-article-card></app-article-card>

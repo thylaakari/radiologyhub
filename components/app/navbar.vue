@@ -69,7 +69,7 @@
           >О нас</nuxt-link
         >
         <nuxt-link
-          to="/"
+          to="/blog"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Блог</nuxt-link
         >

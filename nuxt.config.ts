@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-
   app: {
     head: {
       charset: 'utf-8',
@@ -20,17 +19,14 @@ export default defineNuxtConfig({
       ],
     },
   },
-
   plugins: ['~/plugins/preline.client.ts'],
   css: ['~/assets/css/main.css'],
-
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-
   modules: ['@nuxt/content'],
   content: {
     markdown: {

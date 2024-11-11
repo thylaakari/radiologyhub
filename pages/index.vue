@@ -161,7 +161,7 @@
     <h2 class="text-center text-3xl font-bold pb-10">
       Новости &mdash;
       <nuxt-link
-        to=""
+        to="/blog"
         class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 hover:underline cursor-pointer decoration-solid decoration-sky-500"
         >Все новости &rarr;</nuxt-link
       >

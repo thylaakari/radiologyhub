@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="" class="cursor-pointer">
+  <nuxt-link to="/article/18" class="cursor-pointer">
     <article
       class="rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 shadow-md hover:shadow-lg transition"
     >

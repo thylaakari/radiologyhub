@@ -75,7 +75,7 @@
         >
 
         <nuxt-link
-          to="/"
+          to="/signin"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900 block"
           >Личный кабинет &rarr;</nuxt-link
         >

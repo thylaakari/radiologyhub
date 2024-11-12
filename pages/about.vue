@@ -8,4 +8,8 @@
 definePageMeta({
   layout: 'main',
 })
+
+useHead({
+  title: 'О нас',
+})
 </script>

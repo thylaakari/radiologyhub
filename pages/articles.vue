@@ -134,4 +134,8 @@
 definePageMeta({
   layout: 'main',
 })
+
+useHead({
+  title: 'Статьи',
+})
 </script>

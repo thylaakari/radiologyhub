@@ -1,7 +1,7 @@
 <template>
   <!-- First screen -->
   <header
-    class="bg-gradient-to-br from-stone-700 to-black text-white lg:h-screen w-full flex flex-col"
+    class="text-white lg:h-screen w-full flex flex-col bg-[url('/public/bg_header.png')] bg-fixed bg-no-repeat bg-cover bg-center"
   >
     <app-navbar></app-navbar>
     <main

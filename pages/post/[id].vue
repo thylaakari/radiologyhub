@@ -6,8 +6,13 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
 definePageMeta({
   layout: 'main',
+})
+
+useHead({
+  title: route.path,
 })
 // const { data } = await useAsyncData('post', () =>
 //   queryContent('/about').findOne()

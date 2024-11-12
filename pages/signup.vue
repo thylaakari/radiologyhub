@@ -85,4 +85,8 @@
 definePageMeta({
   layout: 'sign',
 })
+
+useHead({
+  title: 'Создать аккаунт',
+})
 </script>

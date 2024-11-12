@@ -178,3 +178,9 @@
 
   <app-footer></app-footer>
 </template>
+
+<script setup lang="ts">
+useHead({
+  title: 'Главная страница',
+})
+</script>

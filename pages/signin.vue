@@ -109,4 +109,7 @@
 definePageMeta({
   layout: 'sign',
 })
+useHead({
+  title: 'Вход в личный кабинет',
+})
 </script>

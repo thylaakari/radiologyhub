@@ -138,4 +138,8 @@
 definePageMeta({
   layout: 'main',
 })
+
+useHead({
+  title: 'Новости проекта',
+})
 </script>

@@ -1,7 +1,7 @@
 <template>
   <!-- First screen -->
   <header
-    class="text-white lg:h-screen w-full flex flex-col bg-[url('/public/bg_header.png')] bg-fixed bg-no-repeat bg-cover bg-center"
+    class="text-white lg:h-screen w-full flex flex-col bg-[url('/public/bg_crop-min.png')] bg-fixed bg-no-repeat bg-left lg:bg-right bg-black"
   >
     <app-navbar></app-navbar>
     <main

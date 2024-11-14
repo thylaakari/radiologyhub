@@ -1,3 +1,38 @@
+<script setup lang="js">
+import { Form, Field, ErrorMessage } from 'vee-validate'
+
+const isSignedUp = ref(false)
+useHead({
+  title: 'Главная страница',
+})
+
+const client = useSupabaseClient()
+
+async function signup(values) {
+  try {
+    const { error } = await client.auth.signInWithOtp({
+      email: values.email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: 'https://radiologyhub.netlify.app/blog',
+      },
+    })
+    isSignedUp.value = true
+    setTimeout(() => {
+      isSignedUp.value = false
+    }, 5000)
+    if (error) throw error
+  } catch (error) {}
+}
+
+function validateEmail(value) {
+  if (!value) return 'Введите e-mail'
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  if (!regex.test(value)) return 'Введите правильный e-mail'
+  return true
+}
+</script>
+
 <template>
   <!-- First screen -->
   <header
@@ -28,7 +63,8 @@
       </div>
 
       <!-- Форма на главной -->
-      <div
+      <Form
+        @submit="signup"
         class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
       >
         <div class="bg-white rounded-t-[10px] p-3 mb-0">
@@ -37,30 +73,28 @@
             разборе кейсов, просматривать видеокурсы
           </h2>
         </div>
+        <div
+          v-if="isSignedUp"
+          class="bg-teal-500 text-white p-4"
+          role="alert"
+          tabindex="-1"
+          aria-labelledby="hs-solid-color-success-label"
+        >
+          <span id="hs-solid-color-success-label" class="font-bold"
+            >Отлично!</span
+          >
+          Проверьте почту.
+        </div>
         <div class="p-3 pt-0 md:pt-4 mt-0 bg-white h-full rounded-b-[10px]">
           <div class="relative">
-            <input
-              type="text"
+            <Field
+              type="email"
+              name="email"
+              :rules="validateEmail"
               placeholder="email@yandex.ru"
-              class="py-3 px-4 ps-14 block w-full border-gray-200 shadow-sm rounded-lg text-md md:text-lg focus:z-10 focus:border-sky-500 focus:ring-sky-500 disabled:opacity-50 disabled:pointer-events-none placeholder:text-gray-400 font-extralight text-gray-900"
+              class="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-lg text-md md:text-lg focus:z-10 focus:border-sky-500 focus:ring-sky-500 disabled:opacity-50 disabled:pointer-events-none placeholder:text-gray-400 font-extralight text-gray-900"
             />
-            <div
-              class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                class="h-6 stroke-gray-400"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                />
-              </svg>
-            </div>
+            <error-message name="email" class="text-red-500"></error-message>
           </div>
           <button
             class="p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white"
@@ -74,7 +108,7 @@
             ></span
           >
         </div>
-      </div>
+      </Form>
     </main>
   </header>
 
@@ -178,9 +212,3 @@
 
   <app-footer></app-footer>
 </template>
-
-<script setup lang="ts">
-useHead({
-  title: 'Главная страница',
-})
-</script>

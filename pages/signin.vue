@@ -1,36 +1,61 @@
+<script setup lang="js">
+import { Form, Field, ErrorMessage } from 'vee-validate'
+
+const isSignedUp = ref(false)
+
+definePageMeta({
+  layout: 'sign',
+})
+useHead({
+  title: 'Вход в личный кабинет',
+})
+
+const client = useSupabaseClient()
+
+async function signup(values) {
+  try {
+    const { error } = await client.auth.signInWithOtp({
+      email: values.email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: 'https://radiologyhub.netlify.app/blog'
+      }
+    })
+    isSignedUp.value = true
+    setTimeout(() => {
+      navigateTo('/')
+    }, 5000)
+    if (error) throw error
+  } catch (error) {}
+}
+
+function validateEmail(value) {
+  if (!value) return 'Введите e-mail'
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(value)) return 'Введите правильный e-mail'
+  return true
+}
+</script>
+
 <template>
   <main
     class="w-full max-w-sm p-6 m-auto mx-auto bg-white h-screen content-center"
+    v-if="!isSignedUp"
   >
     <div class="flex justify-center mx-auto">
       <app-logo></app-logo>
     </div>
 
-    <form class="mt-6">
+    <Form class="mt-6" @submit="signup">
       <div>
-        <label for="username" class="block text-sm text-gray-800">Логин</label>
-        <input
-          type="text"
+        <label for="email" class="block text-sm text-gray-800">E-mail</label>
+        <Field
+          type="email"
+          name="email"
+          :rules="validateEmail"
           class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
-      </div>
-
-      <div class="mt-4">
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm text-gray-800"
-            >Пароль</label
-          >
-          <a
-            href="#"
-            class="text-xs text-gray-600 dark:text-gray-400 hover:underline"
-            >Забыли пароль?</a
-          >
-        </div>
-
-        <input
-          type="password"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-        />
+        <error-message name="email" class="text-red-500"></error-message>
       </div>
 
       <div class="mt-6">
@@ -40,7 +65,7 @@
           Войти
         </button>
       </div>
-    </form>
+    </Form>
 
     <div class="flex items-center justify-between mt-4"></div>
     <div
@@ -93,23 +118,19 @@
         Войти с Google
       </button>
     </div>
-
-    <p class="mt-8 text-xs font-light text-center text-gray-400">
-      Нет аккаунта?
-      <router-link
-        to="/signup"
-        class="font-medium text-gray-700 hover:underline"
-        >Создать</router-link
-      >
-    </p>
+  </main>
+  <main
+    v-if="isSignedUp"
+    class="w-full max-w-md p-6 m-auto mx-auto bg-white h-screen content-center transition-opacity duration-300"
+  >
+    <div
+      class="bg-teal-500 text-white rounded-lg p-4"
+      role="alert"
+      tabindex="-1"
+      aria-labelledby="hs-solid-color-success-label"
+    >
+      <span id="hs-solid-color-success-label" class="font-bold">Отлично!</span>
+      Проверьте почту.
+    </div>
   </main>
 </template>
-
-<script setup lang="ts">
-definePageMeta({
-  layout: 'sign',
-})
-useHead({
-  title: 'Вход в личный кабинет',
-})
-</script>

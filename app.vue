@@ -1,10 +1,3 @@
-<template>
-  <nuxt-loading-indicator></nuxt-loading-indicator>
-  <nuxt-layout>
-    <nuxt-page></nuxt-page>
-  </nuxt-layout>
-</template>
-
 <script setup lang="ts">
 const title = ref('Интерактивный портал по классической рентгенологии')
 const description = ref(
@@ -31,3 +24,10 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 </script>
+
+<template>
+  <nuxt-loading-indicator></nuxt-loading-indicator>
+  <nuxt-layout>
+    <nuxt-page></nuxt-page>
+  </nuxt-layout>
+</template>

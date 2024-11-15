@@ -2,6 +2,8 @@
 import { Form, Field, ErrorMessage } from 'vee-validate'
 
 const isSignedUp = ref(false)
+const isLoading = ref(false)
+const errorMsg = ref(null)
 useHead({
   title: 'Главная страница',
 })
@@ -9,20 +11,33 @@ useHead({
 const client = useSupabaseClient()
 
 async function signup(values) {
+  isLoading.value = true
   try {
     const { error } = await client.auth.signInWithOtp({
       email: values.email,
       options: {
         shouldCreateUser: true,
-        emailRedirectTo: 'https://radiologyhub.netlify.app/blog',
+        emailRedirectTo: 'https://radiologyhub.netlify.app/',
       },
     })
-    isSignedUp.value = true
-    setTimeout(() => {
-      isSignedUp.value = false
+    if (error) {
+      throw error
+    }
+    else {
+      isSignedUp.value = true
+      const timeout = setTimeout(() => {
+        isSignedUp.value = false
+      }, 5000)
+    }
+  } catch (error) {
+    errorMsg.value = error
+    const timeout = setTimeout(() => {
+      errorMsg.value = ''
     }, 5000)
-    if (error) throw error
-  } catch (error) {}
+  } finally {
+    isLoading.value = false
+    clearTimeout(timeout)
+  }
 }
 
 function validateEmail(value) {
@@ -85,6 +100,16 @@ function validateEmail(value) {
           >
           Проверьте почту.
         </div>
+
+        <div
+          v-if="errorMsg"
+          class="bg-red-500 text-white p-4"
+          role="alert"
+          tabindex="-1"
+          aria-labelledby="hs-solid-color-success-label"
+        >
+          {{ errorMsg }}
+        </div>
         <div class="p-3 pt-0 md:pt-4 mt-0 bg-white h-full rounded-b-[10px]">
           <div class="relative">
             <Field
@@ -97,8 +122,13 @@ function validateEmail(value) {
             <error-message name="email" class="text-red-500"></error-message>
           </div>
           <button
-            class="p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white"
+            class="p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white disabled:opacity-50 disabled:pointer-events-none"
+            :disabled="isLoading"
           >
+            <span
+              class="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full"
+              v-if="isLoading"
+            ></span>
             Зарегистрироваться
           </button>
           <span class="text-sm text-gray-500 dark:text-neutral-400"

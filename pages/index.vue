@@ -3,6 +3,7 @@ import { Form, Field, ErrorMessage } from 'vee-validate'
 
 const isSignedUp = ref(false)
 const isLoading = ref(false)
+const isShowedForm = ref(true)
 const errorMsg = ref(null)
 useHead({
   title: 'Главная страница',
@@ -17,26 +18,21 @@ async function signup(values) {
       email: values.email,
       options: {
         shouldCreateUser: true,
-        emailRedirectTo: 'https://radiologyhub.netlify.app/',
+        emailRedirectTo: 'https://radiologyhub.netlify.app/dashboard',
       },
     })
     if (error) {
       throw error
     }
     else {
+      isShowedForm.value = false
       isSignedUp.value = true
-      const timeout = setTimeout(() => {
-        isSignedUp.value = false
-      }, 5000)
     }
   } catch (error) {
+    isShowedForm.value = false
     errorMsg.value = error
-    const timeout = setTimeout(() => {
-      errorMsg.value = ''
-    }, 5000)
   } finally {
     isLoading.value = false
-    clearTimeout(timeout)
   }
 }
 
@@ -80,6 +76,7 @@ function validateEmail(value) {
       <!-- Форма на главной -->
       <Form
         @submit="signup"
+        v-if="isShowedForm"
         class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
       >
         <div class="bg-white rounded-t-[10px] p-3 mb-0">
@@ -87,28 +84,6 @@ function validateEmail(value) {
             Зарегистрируйтесь, чтобы комментировать статьи, участвовать в
             разборе кейсов, просматривать видеокурсы
           </h2>
-        </div>
-        <div
-          v-if="isSignedUp"
-          class="bg-teal-500 text-white p-4"
-          role="alert"
-          tabindex="-1"
-          aria-labelledby="hs-solid-color-success-label"
-        >
-          <span id="hs-solid-color-success-label" class="font-bold"
-            >Отлично!</span
-          >
-          Проверьте почту.
-        </div>
-
-        <div
-          v-if="errorMsg"
-          class="bg-red-500 text-white p-4"
-          role="alert"
-          tabindex="-1"
-          aria-labelledby="hs-solid-color-success-label"
-        >
-          {{ errorMsg }}
         </div>
         <div class="p-3 pt-0 md:pt-4 mt-0 bg-white h-full rounded-b-[10px]">
           <div class="relative">
@@ -122,14 +97,14 @@ function validateEmail(value) {
             <error-message name="email" class="text-red-500"></error-message>
           </div>
           <button
-            class="p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white disabled:opacity-50 disabled:pointer-events-none"
+            class="flex items-center justify-center p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white disabled:opacity-50 disabled:pointer-events-none"
             :disabled="isLoading"
           >
             <span
-              class="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full"
+              class="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full mr-4"
               v-if="isLoading"
             ></span>
-            Зарегистрироваться
+            {{ isLoading ? 'Секунду' : 'Зарегистрироваться' }}
           </button>
           <span class="text-sm text-gray-500 dark:text-neutral-400"
             >Нажимая кнопку, я даю свое согласие на
@@ -139,6 +114,27 @@ function validateEmail(value) {
           >
         </div>
       </Form>
+      <div
+        class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
+        v-else
+      >
+        <div
+          v-if="isSignedUp"
+          class="bg-gradient-to-t from-green-200 to-white rounded-[10px] p-3 mb-0 h-full text-green-600"
+        >
+          <span id="hs-solid-color-success-label" class="font-bold"
+            >Отлично!</span
+          >
+          Проверьте почту. Не забудьте посмотреть папку "Спам".
+        </div>
+
+        <div
+          v-if="errorMsg"
+          class="bg-gradient-to-t from-red-200 to-white rounded-[10px] p-3 mb-0 h-full text-red-600"
+        >
+          {{ errorMsg }}
+        </div>
+      </div>
     </main>
   </header>
 

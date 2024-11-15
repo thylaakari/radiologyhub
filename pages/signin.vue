@@ -2,6 +2,9 @@
 import { Form, Field, ErrorMessage } from 'vee-validate'
 
 const isSignedUp = ref(false)
+const isLoading = ref(false)
+const isShowedForm = ref(true)
+const errorMsg = ref(null)
 
 definePageMeta({
   layout: 'sign',
@@ -13,20 +16,28 @@ useHead({
 const client = useSupabaseClient()
 
 async function signup(values) {
+  isLoading.value = true
   try {
     const { error } = await client.auth.signInWithOtp({
       email: values.email,
       options: {
         shouldCreateUser: true,
-        emailRedirectTo: 'https://radiologyhub.netlify.app/blog'
-      }
+        emailRedirectTo: 'https://radiologyhub.netlify.app/dashboard',
+      },
     })
-    isSignedUp.value = true
-    setTimeout(() => {
-      navigateTo('/')
-    }, 5000)
-    if (error) throw error
-  } catch (error) {}
+    if (error) {
+      throw error
+    }
+    else {
+      isShowedForm.value = false
+      isSignedUp.value = true
+    }
+  } catch (error) {
+    isShowedForm.value = false
+    errorMsg.value = error
+  } finally {
+    isLoading.value = false
+  }
 }
 
 function validateEmail(value) {
@@ -40,13 +51,12 @@ function validateEmail(value) {
 <template>
   <main
     class="w-full max-w-sm p-6 m-auto mx-auto bg-white h-screen content-center"
-    v-if="!isSignedUp"
   >
     <div class="flex justify-center mx-auto">
       <app-logo></app-logo>
     </div>
 
-    <Form class="mt-6" @submit="signup">
+    <Form class="mt-6" @submit="signup" v-if="isShowedForm">
       <div>
         <label for="email" class="block text-sm text-gray-800">E-mail</label>
         <Field
@@ -60,20 +70,46 @@ function validateEmail(value) {
 
       <div class="mt-6">
         <button
-          class="p-3 md:py-2 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white"
+          class="flex items-center justify-center p-3 md:py-3 md:px-4 my-4 w-full text-md lg:text-lg font-light rounded-lg bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 hover:bg-gradient-to-r hover:from-blue-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring focus:ring-sky-500 text-white disabled:opacity-50 disabled:pointer-events-none"
+          :disabled="isLoading"
         >
-          Войти
+          <span
+            class="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full mr-4"
+            v-if="isLoading"
+          ></span>
+          {{ isLoading ? 'Секунду' : 'Войти' }}
         </button>
       </div>
     </Form>
+    <div v-else>
+      <div v-if="isSignedUp" class="text-center m-6 text-green-600">
+        <span id="hs-solid-color-success-label" class="font-bold"
+          >Отлично!</span
+        >
+        Проверьте почту. Не забудьте посмотреть папку "Спам".
+      </div>
 
-    <div class="flex items-center justify-between mt-4"></div>
+      <div v-if="errorMsg" class="text-center m-6 text-red-600">
+        {{ errorMsg }}
+      </div>
+      <nuxt-link
+        to="/"
+        class="text-gray-900 text-center block border-b-4 hover:border-sky-500 cursor-pointer"
+        >На главную</nuxt-link
+      >
+    </div>
+
+    <div
+      class="flex items-center justify-between mt-4"
+      v-if="isShowedForm"
+    ></div>
     <div
       class="flex items-center text-sm text-gray-800 before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-white dark:before:border-neutral-600 dark:after:border-neutral-600"
+      v-if="isShowedForm"
     >
       или
     </div>
-    <div class="flex items-center mt-6 -mx-2">
+    <div class="flex items-center mt-6 -mx-2" v-if="isShowedForm">
       <button
         type="button"
         class="py-2.5 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
@@ -117,20 +153,6 @@ function validateEmail(value) {
         </svg>
         Войти с Google
       </button>
-    </div>
-  </main>
-  <main
-    v-if="isSignedUp"
-    class="w-full max-w-md p-6 m-auto mx-auto bg-white h-screen content-center transition-opacity duration-300"
-  >
-    <div
-      class="bg-teal-500 text-white rounded-lg p-4"
-      role="alert"
-      tabindex="-1"
-      aria-labelledby="hs-solid-color-success-label"
-    >
-      <span id="hs-solid-color-success-label" class="font-bold">Отлично!</span>
-      Проверьте почту.
     </div>
   </main>
 </template>

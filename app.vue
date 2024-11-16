@@ -22,11 +22,14 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const userStore = useUserStore()
 const client = useSupabaseClient()
-await userStore.fetchUser(client)
-const user = userStore.getUser()
-console.log(user.value)
+const user = ref(null)
+try {
+  const response = await client.auth.getUser()
+  user.value = response.data.user
+} catch (error) {
+  console.error('Failed to fetch user:', error)
+}
 </script>
 
 <template>

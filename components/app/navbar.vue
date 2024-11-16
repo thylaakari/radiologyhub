@@ -1,8 +1,14 @@
 <script setup>
 const isOpen = ref(false)
 
-const userStore = useUserStore()
-const user = userStore.getUser()
+const client = useSupabaseClient()
+const user = ref(null)
+try {
+  const response = await client.auth.getUser()
+  user.value = response.data.user
+} catch (error) {
+  console.error('Failed to fetch user:', error)
+}
 </script>
 
 <template>
@@ -84,7 +90,7 @@ const user = userStore.getUser()
         <nuxt-link
           :to="user ? '/dashboard' : '/signin'"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900 block"
-          >{{ user ? user.email : 'Войти' }} &rarr;</nuxt-link
+          >{{ user ? user.email : 'Личный кабинет' }} &rarr;</nuxt-link
         >
       </div>
     </div>

@@ -1,10 +1,8 @@
 <script setup>
 const client = useSupabaseClient()
-const userStore = useUserStore()
 
 async function logout() {
   await client.auth.signOut()
-  userStore.setUser(null)
   navigateTo('/')
 }
 </script>

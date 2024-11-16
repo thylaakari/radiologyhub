@@ -1,6 +1,8 @@
 <script setup>
 const isOpen = ref(false)
 
+import { useUserStore } from '@/stores/user'
+
 const userStore = useUserStore()
 const user = userStore.getUser
 </script>

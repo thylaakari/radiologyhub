@@ -22,12 +22,11 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-import { useUserStore } from '@/stores/user'
 const userStore = useUserStore()
 const client = useSupabaseClient()
 await userStore.fetchUser(client)
-const user = userStore.getUser
-console.log(user)
+const user = userStore.getUser()
+console.log(user.value)
 </script>
 
 <template>

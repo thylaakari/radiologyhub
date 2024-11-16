@@ -6,6 +6,9 @@ const isLoading = ref(false)
 const isShowedForm = ref(true)
 const errorMsg = ref(null)
 
+// https://pkcsfruhvmsbpzbobeog.supabase.co/auth/v1/callback
+// AIzaSyDOrheyRiqxBF8nGIHTPaI2VfsbmPFwVgc APIKEY GOOGLE
+
 definePageMeta({
   layout: 'sign',
 })
@@ -38,6 +41,15 @@ async function signup(values) {
   } finally {
     isLoading.value = false
   }
+}
+
+async function authWithGoogle() {
+  await client.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'https://radiologyhub.netlify.app/dashboard',
+    },
+  })
 }
 
 function validateEmail(value) {
@@ -111,6 +123,7 @@ function validateEmail(value) {
     </div>
     <div class="flex items-center mt-6 -mx-2" v-if="isShowedForm">
       <button
+        @click="authWithGoogle"
         type="button"
         class="py-2.5 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
       >

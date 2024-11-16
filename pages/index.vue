@@ -9,6 +9,7 @@ useHead({
   title: 'Главная страница',
 })
 
+
 const client = useSupabaseClient()
 
 async function signup(values) {

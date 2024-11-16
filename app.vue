@@ -1,6 +1,4 @@
 <script setup>
-import { useUserStore } from './stores/user'
-
 const title = ref('Интерактивный портал по классической рентгенологии')
 const description = ref(
   'Русский интернет-портал для рентгенологов, где собраны различные статьи, кейсы, разборы случаев, а также интерактивные курсы'
@@ -26,10 +24,9 @@ useSeoMeta({
 
 const userStore = useUserStore()
 const client = useSupabaseClient()
-const {
-  data: { user },
-} = await client.auth.getUser()
-userStore.setUser(user)
+await userStore.fetchUser(client)
+const user = userStore.getUser
+console.log(user)
 </script>
 
 <template>

@@ -1,3 +1,10 @@
+<script setup>
+const isOpen = ref(false)
+
+const userStore = useUserStore()
+const user = userStore.getUser
+</script>
+
 <template>
   <nav
     class="w-full mx-auto py-6 px-4 flex flex-wrap items-center justify-between container"
@@ -75,15 +82,11 @@
         >
 
         <nuxt-link
-          to="/signin"
+          :to="user ? '/dashboard' : '/signin'"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900 block"
-          >Личный кабинет &rarr;</nuxt-link
+          >{{ user ? user.email : 'Войти' }} &rarr;</nuxt-link
         >
       </div>
     </div>
   </nav>
 </template>
-
-<script setup lang="ts">
-const isOpen = ref(false)
-</script>

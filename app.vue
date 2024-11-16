@@ -1,9 +1,10 @@
 <script setup>
+import { useUserStore } from './stores/user'
+
 const title = ref('Интерактивный портал по классической рентгенологии')
 const description = ref(
   'Русский интернет-портал для рентгенологов, где собраны различные статьи, кейсы, разборы случаев, а также интерактивные курсы'
 )
-
 useHead({
   titleTemplate: (titleChunk) =>
     titleChunk ? `${titleChunk} - ${title.value}` : title.value,
@@ -14,7 +15,6 @@ useHead({
     },
   ],
 })
-
 useSeoMeta({
   title: title,
   ogTitle: title,
@@ -23,6 +23,13 @@ useSeoMeta({
   ogImage: '/public/blacklogo.svg',
   twitterCard: 'summary_large_image',
 })
+
+const userStore = useUserStore()
+const client = useSupabaseClient()
+const {
+  data: { user },
+} = await client.auth.getUser()
+userStore.setUser(user)
 </script>
 
 <template>

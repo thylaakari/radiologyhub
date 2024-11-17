@@ -77,14 +77,14 @@ try {
           >Курсы</nuxt-link
         > -->
         <nuxt-link
-          to="/about"
-          class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
-          >О нас</nuxt-link
-        >
-        <nuxt-link
           to="/blog"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
           >Блог</nuxt-link
+        >
+        <nuxt-link
+          to="/feedback"
+          class="text-gray-200 hover:text-blue-400 transition-colors duration-900"
+          >Связаться с нами</nuxt-link
         >
 
         <nuxt-link

@@ -25,7 +25,7 @@ async function signup(values) {
       email: values.email,
       options: {
         shouldCreateUser: true,
-        emailRedirectTo: 'https://radiologyhub.netlify.app/dashboard',
+        emailRedirectTo: 'http://localhost:3000/dashboard',
       },
     })
     if (error) {

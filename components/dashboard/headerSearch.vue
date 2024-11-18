@@ -22,7 +22,7 @@
     <input
       type="text"
       class="py-2 ps-10 pe-16 block w-full bg-white border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-      placeholder="Search"
+      placeholder="Поиск"
     />
     <div
       class="hidden absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-1"

@@ -1,5 +1,8 @@
 <script setup>
 const client = useSupabaseClient()
+const {
+  data: { user },
+} = await client.auth.getUser()
 async function logout() {
   await client.auth.signOut()
   navigateTo('/')
@@ -17,7 +20,7 @@ async function logout() {
     >
       <img
         class="shrink-0 size-[38px] rounded-full"
-        src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+        :src="user.user_metadata.avatar_url"
         alt="Avatar"
       />
     </button>
@@ -29,7 +32,7 @@ async function logout() {
       aria-labelledby="hs-dropdown-account"
     >
       <div class="py-3 px-5 bg-gray-100 rounded-t-lg">
-        <p class="text-sm font-medium text-gray-800">james@site.com</p>
+        <p class="text-sm font-medium text-gray-800">{{ user.email }}</p>
       </div>
       <div class="p-1.5 space-y-0.5">
         <a
@@ -55,7 +58,7 @@ async function logout() {
         </a>
         <hr class="border-b-1 border-gray-200" />
         <button
-          class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+          class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 w-full"
           @click="logout"
         >
           <svg

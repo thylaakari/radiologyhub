@@ -4,7 +4,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const name = ref('')
+const custom_name = ref('')
 const supabase = useSupabaseClient()
 const {
   data: { user },
@@ -15,10 +15,10 @@ async function changeName() {
   try {
     const { data, error } = await supabase.auth.updateUser({
       data: {
-        name: document.getElementById('name').value,
+        custom_name: document.getElementById('name').value,
       },
     })
-    user.user_metadata.name = document.getElementById('name').value
+    user.user_metadata.custom_name = document.getElementById('name').value
     isChangeNameSuccess.value = true
     setTimeout(() => {
       isChangeNameSuccess.value = false
@@ -89,7 +89,7 @@ async function changeEmail() {
         name="name"
         class="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-0 text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
         placeholder="Имя"
-        :value="user.user_metadata.name"
+        :value="user.user_metadata.custom_name"
       />
       <button
         type="button"

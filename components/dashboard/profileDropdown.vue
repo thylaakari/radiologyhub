@@ -35,9 +35,9 @@ async function logout() {
         <p class="text-sm font-medium text-gray-800">{{ user.email }}</p>
       </div>
       <div class="p-1.5 space-y-0.5">
-        <a
+        <nuxt-link
           class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-          href="#"
+          to="notifications"
         >
           <svg
             class="shrink-0 size-4"
@@ -55,7 +55,7 @@ async function logout() {
             <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
           </svg>
           Уведомления
-        </a>
+        </nuxt-link>
         <hr class="border-b-1 border-gray-200" />
         <button
           class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 w-full"

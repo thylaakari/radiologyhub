@@ -9,7 +9,6 @@ useHead({
   title: 'Главная страница',
 })
 
-
 const client = useSupabaseClient()
 
 async function signup(values) {
@@ -24,8 +23,7 @@ async function signup(values) {
     })
     if (error) {
       throw error
-    }
-    else {
+    } else {
       isShowedForm.value = false
       isSignedUp.value = true
     }

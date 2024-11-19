@@ -142,7 +142,7 @@
             <li>
               <nuxt-link
                 class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                to="articles"
+                to="/user/articles"
               >
                 <svg
                   class="shrink-0 size-4"
@@ -162,7 +162,7 @@
                     d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
                   />
                 </svg>
-                Статьи
+                Мои статьи
               </nuxt-link>
             </li>
           </ul>

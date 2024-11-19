@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   plugins: ['~/plugins/preline.client.ts'],
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -27,7 +28,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@nuxt/content', '@nuxtjs/supabase', '@vee-validate/nuxt'],
+  modules: ['@nuxt/content', '@nuxtjs/supabase', '@vee-validate/nuxt', '@nuxtjs/mdc'],
   content: {
     markdown: {
       anchorLinks: false,

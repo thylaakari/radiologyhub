@@ -24,14 +24,12 @@ async function signup(values) {
     const { error } = await client.auth.signInWithOtp({
       email: values.email,
       options: {
-        shouldCreateUser: true,
-        emailRedirectTo: 'http://localhost:3000/dashboard',
+        emailRedirectTo: 'https://radiologyhub.netlify.app/dashboard',
       },
     })
     if (error) {
       throw error
-    }
-    else {
+    } else {
       isShowedForm.value = false
       isSignedUp.value = true
     }
@@ -54,7 +52,7 @@ async function authWithGoogle() {
 
 function validateEmail(value) {
   if (!value) return 'Введите e-mail'
-  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   if (!regex.test(value)) return 'Введите правильный e-mail'
   return true
 }

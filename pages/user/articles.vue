@@ -5,9 +5,11 @@ definePageMeta({
 })
 
 const supabase = useSupabaseClient()
-const {
-  data: { user },
-} = await supabase.auth.getUser()
+const articles = await supabase
+  .from('articles')
+  .select()
+  .range(0, 10)
+  .order('id', { ascending: false })
 </script>
 
 <template>
@@ -25,11 +27,6 @@ const {
     <div>
       <app-articles-filter></app-articles-filter>
     </div>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
+    <app-article-card :article="article" v-for="article in articles.data" />
   </div>
 </template>

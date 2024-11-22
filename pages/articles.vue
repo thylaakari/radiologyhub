@@ -1,11 +1,25 @@
+<script setup lang="ts">
+definePageMeta({
+  layout: 'main',
+})
+
+useHead({
+  title: 'Статьи',
+})
+
+const supabase = useSupabaseClient()
+const { data, error } = await supabase
+  .from('articles')
+  .select()
+  .range(0, 10)
+  .order('id', { ascending: false })
+console.log(data)
+</script>
+
 <template>
   <app-articles-filter></app-articles-filter>
   <section class="container lg:w-2/3 xl:w-1/2 mx-auto grid gap-8 pb-10 px-4">
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
-    <app-article-card></app-article-card>
+    <app-article-card v-for="article in data" :article="article" />
   </section>
   <section class="container mx-auto pb-10">
     <nav
@@ -77,13 +91,3 @@
     </nav>
   </section>
 </template>
-
-<script setup lang="ts">
-definePageMeta({
-  layout: 'main',
-})
-
-useHead({
-  title: 'Статьи',
-})
-</script>

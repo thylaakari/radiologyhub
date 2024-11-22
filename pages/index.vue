@@ -41,6 +41,12 @@ function validateEmail(value) {
   if (!regex.test(value)) return 'Введите правильный e-mail'
   return true
 }
+
+const articles = await client
+  .from('articles')
+  .select()
+  .range(0, 3)
+  .order('id', { ascending: false })
 </script>
 
 <template>
@@ -150,9 +156,11 @@ function validateEmail(value) {
     <section
       class="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-4 mx-2 sm:mx-0"
     >
-      <app-article-card></app-article-card>
-      <app-article-card></app-article-card>
-      <app-article-card></app-article-card>
+      <app-article-card
+        v-if="articles.data"
+        :article="article"
+        v-for="article in articles.data"
+      />
     </section>
   </section>
 

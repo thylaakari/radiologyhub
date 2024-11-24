@@ -2,6 +2,40 @@
 definePageMeta({
   layout: 'main',
 })
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import Logo from '~/components/app/logo.vue'
+
+const supabase = useSupabaseClient()
+const email = ref('')
+const message = ref('')
+
+async function sendFeedback() {
+  isLoading.value = true
+  try {
+    const { data, error } = await supabase.from('feedback').insert({
+      email: email.value,
+      text: message.value,
+    })
+    console.log(data, error)
+  } catch (error) {
+    console.error('Failed to send feedback:', error)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+function validateEmail(value) {
+  if (!value) return 'Введите e-mail'
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  if (!regex.test(value)) return 'Введите правильный e-mail'
+  return true
+}
+
+function validateMessage(value) {
+  if (!value) return 'Введите сообщение'
+  if (value.length < 1) return 'Сообщение не может быть пустым'
+  return true
+}
 
 const isLoading = ref(false)
 </script>
@@ -12,21 +46,29 @@ const isLoading = ref(false)
   >
     <div class="prose">
       <h2>Связаться с нами</h2>
-      <form>
-        <div class="flex items-center">
-          <input
+      <Form @submit="sendFeedback">
+        <div class="items-center">
+          <Field
             type="email"
             name="email"
+            :rules="validateEmail"
+            v-model="email"
             placeholder="Email"
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
+          <ErrorMessage name="email" class="text-red-500" />
         </div>
 
-        <div class="flex items-center mt-4">
-          <textarea
+        <div class="items-center mt-4">
+          <Field
+            :rules="validateMessage"
+            as="textarea"
+            name="message"
             class="block w-full py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            v-model="message"
             placeholder="Жалоба, пожелание, предложение"
-          ></textarea>
+          />
+          <ErrorMessage name="message" class="text-red-500" />
         </div>
 
         <div class="md:flex md:items-center">
@@ -36,11 +78,12 @@ const isLoading = ref(false)
           >
             <span
               class="animate-spin inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full mr-4"
+              v-if="isLoading"
             ></span>
             Отправить
           </button>
         </div>
-      </form>
+      </Form>
       <section class="prose mt-10">
         <h2>Наши контакты</h2>
 
@@ -69,7 +112,7 @@ const isLoading = ref(false)
             >radiologyhub@yandex.ru</a
           >
         </p>
-        <p class="italic flex items-center gap-2">
+        <!-- <p class="italic flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -110,7 +153,7 @@ const isLoading = ref(false)
           <a href="#" class="hover:text-sky-500 transition-colors duration-200"
             >radiologyhub</a
           >
-        </p>
+        </p> -->
       </section>
     </div>
 

@@ -47,6 +47,12 @@ const articles = await client
   .select()
   .range(0, 3)
   .order('id', { ascending: false })
+
+const blog = await client
+  .from('blog')
+  .select()
+  .range(0, 6)
+  .order('id', { ascending: false })
 </script>
 
 <template>
@@ -234,12 +240,7 @@ const articles = await client
       >
     </h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
+      <app-news-card v-for="post in blog.data" :post="post" />
     </div>
   </section>
 

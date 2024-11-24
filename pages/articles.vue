@@ -13,7 +13,6 @@ const { data, error } = await supabase
   .select()
   .range(0, 10)
   .order('id', { ascending: false })
-console.log(data)
 </script>
 
 <template>

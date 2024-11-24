@@ -19,6 +19,4 @@ const { data } = await supabase
   .from('articles')
   .select()
   .eq('id', route.params.id)
-
-console.log('data', data[0])
 </script>

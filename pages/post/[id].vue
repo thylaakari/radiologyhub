@@ -1,11 +1,10 @@
 <template>
   <main class="container lg:w-2/3 mx-auto px-4 py-16">
-    <content-doc class="prose mx-auto" :path="'/about'"></content-doc>
-    <!-- <ContentRenderer :value="data" /> -->
+    <MDC :value="data[0].text" tag="article" class="prose mx-auto" />
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const route = useRoute()
 definePageMeta({
   layout: 'main',
@@ -14,8 +13,7 @@ definePageMeta({
 useHead({
   title: route.path,
 })
-// const { data } = await useAsyncData('post', () =>
-//   queryContent('/about').findOne()
-// )
-// console.log(data)
+
+const supabase = useSupabaseClient()
+const { data } = await supabase.from('blog').select().eq('id', route.params.id)
 </script>

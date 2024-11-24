@@ -38,6 +38,7 @@ async function uploadFile(file: File | null) {
   }
 }
 
+const success = ref(false)
 async function publishArticle() {
   try {
     const { data, error } = await supabase.from('articles').insert({
@@ -48,6 +49,8 @@ async function publishArticle() {
       author_avatar: user.value?.user_metadata.picture || 'Нет email',
       tags: tags.value,
     })
+    success.value = true
+    article.value = ''
   } catch (error) {
     console.error('Failed to publish article:', error)
   }
@@ -61,7 +64,18 @@ const article = ref(`## Статья...`)
 <template>
   <div class="w-full grid lg:grid-cols-2 gap-20">
     <section>
-      <div class="mb-8">
+      <div
+        class="mt-2 bg-teal-500 text-sm text-white rounded-lg p-4"
+        role="alert"
+        tabindex="-1"
+        aria-labelledby="hs-solid-color-success-label"
+        v-if="success"
+      >
+        <span id="hs-solid-color-success-label" class="font-bold"
+          >Успешно опубликовано</span
+        >
+      </div>
+      <div class="prose mb-8">
         <h2>Вставьте статью</h2>
         <p>в формате .md</p>
       </div>

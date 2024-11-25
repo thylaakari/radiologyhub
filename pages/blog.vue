@@ -11,7 +11,6 @@ const supabase = useSupabaseClient()
 const { data, error } = await supabase
   .from('blog')
   .select()
-  .range(0, 10)
   .order('id', { ascending: false })
 </script>
 

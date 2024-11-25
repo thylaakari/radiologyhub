@@ -45,13 +45,13 @@ function validateEmail(value) {
 const articles = await client
   .from('articles')
   .select()
-  .range(0, 3)
+  .range(0, 2)
   .order('id', { ascending: false })
 
 const blog = await client
   .from('blog')
   .select()
-  .range(0, 6)
+  .range(0, 5)
   .order('id', { ascending: false })
 </script>
 

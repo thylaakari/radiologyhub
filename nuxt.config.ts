@@ -28,7 +28,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@nuxt/content', '@nuxtjs/supabase', '@vee-validate/nuxt', '@nuxtjs/mdc'],
+  modules: [
+    '@nuxt/content',
+    '@nuxtjs/supabase',
+    '@vee-validate/nuxt',
+    '@nuxtjs/mdc',
+    'nuxt-lazy-load',
+  ],
   content: {
     markdown: {
       anchorLinks: false,

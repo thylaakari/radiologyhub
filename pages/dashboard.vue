@@ -15,7 +15,7 @@ definePageMeta({
       <!-- Card -->
       <nuxt-link
         class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800"
-        to="/user/articles/create"
+        to="/user/create"
       >
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-center gap-x-3">

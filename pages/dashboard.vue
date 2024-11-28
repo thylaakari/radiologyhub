@@ -3,6 +3,8 @@ definePageMeta({
   layout: 'dashboard',
   middleware: 'auth',
 })
+
+const user = useSupabaseUser()
 </script>
 
 <template>
@@ -54,6 +56,7 @@ definePageMeta({
       <nuxt-link
         class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800"
         to="/user/createPost"
+        v-if="user.email === 'thylaakari@gmail.com'"
       >
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-center gap-x-3">

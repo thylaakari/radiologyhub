@@ -12,6 +12,7 @@ const { data, error } = await supabase
   .from('articles')
   .select()
   .order('id', { ascending: false })
+  .eq('published', true)
 </script>
 
 <template>

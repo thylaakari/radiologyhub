@@ -10,23 +10,47 @@ const articles = await supabase
   .select()
   .range(0, 10)
   .order('id', { ascending: false })
+  .eq('published', false)
+
+const article = ref('')
+async function openArticle(id) {
+  const { data, error } = await supabase.from('articles').select().eq('id', id)
+  article.value = data[0]
+}
+
+async function publishArticle(id) {
+  const { data, error } = await supabase
+    .from('articles')
+    .update({ published: true })
+    .eq('id', id)
+  window.location.reload(true)
+}
 </script>
 
 <template>
-  <div class="prose inline-flex gap-4">
-    <h2>Статьи</h2>
-    <nuxt-link
-      to="/user/create"
-      type="button"
-      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-teal-500 text-teal-500 hover:border-teal-400 hover:text-teal-400 focus:outline-none focus:border-teal-400 focus:text-teal-400 disabled:opacity-50 disabled:pointer-events-none no-underline"
-    >
-      Написать статью
-    </nuxt-link>
+  <div class="prose">
+    <h2>Статьи на проверку</h2>
   </div>
-  <div class="w-full lg:w-1/2 grid gap-6">
-    <div>
-      <app-articles-filter></app-articles-filter>
+  <div class="grid lg:grid-cols-2 gap-8">
+    <div class="grid gap-4">
+      <app-article-card
+        :article="article"
+        v-for="article in articles.data"
+        :key="article.id"
+        :checked="false"
+        @click="openArticle(article.id)"
+      />
     </div>
-    <app-article-card :article="article" v-for="article in articles.data" />
+    <div v-if="article !== ''" class="prose">
+      <h2>{{ article.title }}</h2>
+      <MDC :value="article.text" tag="article" />
+      <button
+        type="button"
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:bg-teal-600 disabled:opacity-50 disabled:pointer-events-none"
+        @click="publishArticle(article.id)"
+      >
+        Опубликовать
+      </button>
+    </div>
   </div>
 </template>

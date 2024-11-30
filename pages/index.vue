@@ -47,6 +47,7 @@ const articles = await client
   .select()
   .range(0, 2)
   .order('id', { ascending: false })
+  .eq('published', true)
 
 const blog = await client
   .from('blog')

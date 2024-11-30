@@ -24,7 +24,7 @@ async function signup(values) {
     const { error } = await client.auth.signInWithOtp({
       email: values.email,
       options: {
-        emailRedirectTo: 'https://radiologyhub.netlify.app/dashboard',
+        emailRedirectTo: 'https://radiologyhub.ru/dashboard',
       },
     })
     if (error) {
@@ -45,7 +45,7 @@ async function authWithGoogle() {
   await client.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'https://radiologyhub.netlify.app/dashboard',
+      redirectTo: 'https://radiologyhub.ru/dashboard',
     },
   })
 }
@@ -55,6 +55,11 @@ function validateEmail(value) {
   const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
   if (!regex.test(value)) return 'Введите правильный e-mail'
   return true
+}
+
+const user = useSupabaseUser()
+if (user.value) {
+  navigateTo('/dashboard')
 }
 </script>
 

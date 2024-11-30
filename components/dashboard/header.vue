@@ -1,3 +1,15 @@
+<script setup>
+const client = useSupabaseClient()
+const {
+  data: { user },
+} = await client.auth.getUser()
+/*************  ✨ Codeium Command ⭐  *************/
+/******  818689a4-9d44-4af0-9bfe-1d5327a95043  *******/
+async function logout() {
+  await client.auth.signOut()
+  navigateTo('/')
+}
+</script>
 <template>
   <div
     class="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 lg:ps-[260px]"
@@ -58,7 +70,30 @@
             </svg>
             <span class="sr-only">Уведомления</span>
           </button>
-          <dashboard-profile-dropdown></dashboard-profile-dropdown>
+          <button
+            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 w-full"
+            @click="logout"
+          >
+            <svg
+              class="shrink-0 size-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+              />
+            </svg>
+            Выйти
+          </button>
         </div>
       </div>
     </nav>

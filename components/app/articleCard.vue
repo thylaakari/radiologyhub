@@ -2,6 +2,7 @@
 defineProps<{
   article: any
   checked?: boolean
+  all?: boolean
 }>()
 </script>
 

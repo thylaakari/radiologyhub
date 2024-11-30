@@ -3,6 +3,9 @@ const client = useSupabaseClient()
 const {
   data: { user },
 } = await client.auth.getUser()
+/**
+ * Log out of the application and redirect to the homepage.
+ */
 async function logout() {
   await client.auth.signOut()
   navigateTo('/')
@@ -56,6 +59,33 @@ async function logout() {
           </svg>
           Уведомления
         </nuxt-link>
+        <li>
+          <nuxt-link
+            class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+            to="/user/articles"
+            :class="{ 'bg-gray-100': $route.path === '/user/articles' }"
+          >
+            <svg
+              class="shrink-0 size-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
+              />
+            </svg>
+            Все статьи
+          </nuxt-link>
+        </li>
         <hr class="border-b-1 border-gray-200" />
         <button
           class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 w-full"

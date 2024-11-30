@@ -4,13 +4,18 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const articles = reactive([])
+
 const supabase = useSupabaseClient()
-const articles = await supabase
+const articlesresponse = await supabase
   .from('articles')
   .select()
-  .range(0, 10)
   .order('id', { ascending: false })
   .eq('published', false)
+
+articles.value = articlesresponse.data
+
+console.log('asdfas', articles)
 
 const article = ref('')
 async function openArticle(id) {
@@ -21,9 +26,9 @@ async function openArticle(id) {
 async function publishArticle(id) {
   const { data, error } = await supabase
     .from('articles')
-    .update({ published: true })
-    .eq('id', id)
-  window.location.reload(true)
+    .upsert({ id, published: true })
+    .select()
+  articles.value = articles.filter((article) => article.id !== data[0].id)
 }
 </script>
 
@@ -35,7 +40,7 @@ async function publishArticle(id) {
     <div class="grid gap-4">
       <app-article-card
         :article="article"
-        v-for="article in articles.data"
+        v-for="article in articles"
         :key="article.id"
         :checked="false"
         @click="openArticle(article.id)"

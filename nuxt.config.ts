@@ -18,8 +18,13 @@ export default defineNuxtConfig({
         },
       ],
     },
+    baseURL: '/', // или ваш базовый путь, если сайт не в корне
+    buildAssetsDir: '/_nuxt/', // директория для ассетов
   },
-
+  ssr: false,
+  nitro: {
+    preset: 'static',
+  },
   plugins: ['~/plugins/preline.client.ts'],
   css: ['~/assets/css/main.css'],
   postcss: {

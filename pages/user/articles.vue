@@ -50,7 +50,6 @@ async function publishArticle(id) {
       <h2>{{ article.title }}</h2>
       <MDC :value="article.text" tag="article" />
       <button
-        asdfsd="sdfs"
         type="button"
         class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:bg-teal-600 disabled:opacity-50 disabled:pointer-events-none"
         @click="publishArticle(article.id)"

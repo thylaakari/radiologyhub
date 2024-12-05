@@ -16,12 +16,13 @@ const { data, error } = await supabase
 </script>
 
 <template>
-  <app-articles-filter></app-articles-filter>
-  <section class="container lg:w-2/3 xl:w-1/2 mx-auto grid gap-8 pb-10 px-4">
+  <!-- <app-articles-filter></app-articles-filter> -->
+  <section class="container lg:w-2/3 xl:w-1/2 mx-auto grid gap-8 py-10 px-4">
     <app-article-card
       v-for="article in data"
       :article="article"
       :key="article.id"
+      :checked="true"
     />
   </section>
   <!-- <section class="container mx-auto pb-10">

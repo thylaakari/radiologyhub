@@ -9,10 +9,11 @@ const articles = ref([])
 
 onMounted(async () => {
   try {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('articles')
       .select()
       .order('id', { ascending: false })
+      .eq('published', true)
     articles.value = data
   } catch (error) {
     console.error(error)
@@ -20,7 +21,7 @@ onMounted(async () => {
 })
 const article = ref('')
 async function openArticle(id) {
-  const { data, error } = await supabase.from('articles').select().eq('id', id)
+  const { data } = await supabase.from('articles').select().eq('id', id)
   article.value = data[0]
 }
 </script>

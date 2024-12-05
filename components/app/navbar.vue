@@ -87,11 +87,11 @@ try {
           >Связаться с нами</nuxt-link
         >
 
-        <nuxt-link
+        <!-- <nuxt-link
           :to="user ? '/dashboard' : '/signin'"
           class="text-gray-200 hover:text-blue-400 transition-colors duration-900 block"
           >{{ user ? user.email : 'Личный кабинет' }} &rarr;</nuxt-link
-        >
+        > -->
       </div>
     </div>
   </nav>

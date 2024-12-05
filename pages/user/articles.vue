@@ -4,7 +4,8 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const articles = reactive([])
+const articles = ref('')
+const article = ref('')
 
 const supabase = useSupabaseClient()
 const articlesresponse = await supabase
@@ -13,18 +14,15 @@ const articlesresponse = await supabase
   .order('id', { ascending: false })
   .eq('published', false)
 
-articles.value = articlesresponse.data
+articles.value = articlesresponse.data[0]
 
-console.log('asdfas', articles)
-
-const article = ref('')
 async function openArticle(id) {
-  const { data, error } = await supabase.from('articles').select().eq('id', id)
+  const { data } = await supabase.from('articles').select().eq('id', id)
   article.value = data[0]
 }
 
 async function publishArticle(id) {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('articles')
     .upsert({ id, published: true })
     .select()
@@ -46,6 +44,7 @@ async function publishArticle(id) {
         @click="openArticle(article.id)"
       />
     </div>
+    {{ articles }}
     <div v-if="article !== ''" class="prose">
       <h2>{{ article.title }}</h2>
       <MDC :value="article.text" tag="article" />

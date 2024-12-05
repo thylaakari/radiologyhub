@@ -86,7 +86,7 @@ const blog = await client
       </div>
 
       <!-- Форма на главной -->
-      <Form
+      <!-- <Form
         @submit="signup"
         v-if="isShowedForm"
         class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
@@ -125,10 +125,9 @@ const blog = await client
             ></span
           >
         </div>
-      </Form>
-      <div
+      </Form> -->
+      <!-- <div
         class="flex flex-col bg-white rounded-xl bg-gradient-to-r from-blue-500 via-pink-500 to-red-500 p-0.5 mx-2 sm:mx-0"
-        v-else
       >
         <div
           v-if="isSignedUp"
@@ -146,7 +145,7 @@ const blog = await client
         >
           {{ errorMsg }}
         </div>
-      </div>
+      </div> -->
     </main>
   </header>
 
@@ -199,25 +198,20 @@ const blog = await client
   <hr class="border-blue-500 border-2 shadow-sm" />
 
   <!-- Features -->
-  <section class="px-4 py-10">
+  <!-- <section class="px-4 py-10">
     <div
       class="container mx-auto grid gap-4 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8"
     >
-      <!-- Stats -->
       <div class="text-center">
         <h4 class="text-lg font-semibold text-gray-800">Статей</h4>
         <p class="mt-2 sm:mt-3 text-6xl font-bold text-blue-500">1488</p>
         <p class="mt-1 text-gray-500 hidden sm:block">в бесплатном доступе</p>
       </div>
-
-      <!-- Stats -->
       <div class="text-center">
         <h4 class="text-lg font-semibold text-gray-800">Пользователей</h4>
         <p class="mt-2 sm:mt-3 text-6xl font-bold text-pink-500">322</p>
         <p class="mt-1 text-gray-500 hidden sm:block">прошли наши курсы</p>
       </div>
-
-      <!-- Stats -->
       <div class="text-center">
         <h4 class="text-lg font-semibold text-gray-800">
           Средняя оценка курсов
@@ -226,7 +220,7 @@ const blog = await client
         <p class="mt-1 text-gray-500 hidden sm:block">из 10</p>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <hr class="border-blue-500 border-2 shadow-sm" />
 

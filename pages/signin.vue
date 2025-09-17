@@ -6,8 +6,6 @@ const isLoading = ref(false)
 const isShowedForm = ref(true)
 const errorMsg = ref(null)
 
-// https://pkcsfruhvmsbpzbobeog.supabase.co/auth/v1/callback
-// AIzaSyDOrheyRiqxBF8nGIHTPaI2VfsbmPFwVgc APIKEY GOOGLE
 
 definePageMeta({
   layout: 'sign',
